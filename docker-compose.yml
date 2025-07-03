@@ -18,8 +18,8 @@ services:
       retries: 10
 
   sonarqube:
-    # verify the tag exists first: docker pull sonarqube:2025.3-community
-    image: sonarqube:2025.3-community
+    # verify the tag exists first: docker pull sonarqube:community
+    image: sonarqube:community
     depends_on:
       db:
         condition: service_healthy
@@ -37,21 +37,25 @@ services:
       - sonarqube_extensions:/opt/sonarqube/extensions
 
   mcp:
-    image: mcp/sonarqube            # official MCP image
-    # uncomment if the tag lacks arm64 layers
-    # platform: linux/amd64
-    depends_on: [sonarqube]
-    ports: ["3100:8080"]
+    build:
+      context: .
+      dockerfile: Dockerfile.mcp
+    depends_on:
+      - sonarqube
+    ports: ["3000:3000"]
     environment:
-      STORAGE_PATH: /data
       SONARQUBE_URL: http://sonarqube:9000
       SONARQUBE_TOKEN: ${SONAR_TOKEN}
-    volumes:
-      - mcp_data:/data
+      NODE_ENV: production
+      LOG_LEVEL: DEBUG
+      LOG_FILE: /tmp/sonarqube-mcp.log
+      MCP_TRANSPORT: http
+      MCP_HTTP_PORT: 3000
+      MCP_HTTP_HOST: 0.0.0.0
+    restart: unless-stopped
 
 volumes:
   sonardb:
   sonarqube_data:
   sonarqube_logs:
   sonarqube_extensions:
-  mcp_data:

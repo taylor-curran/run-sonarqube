@@ -1,0 +1,12 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Install the MCP server globally
+RUN npm install -g sonarqube-mcp-server@latest
+
+# Add debugging and health check
+RUN echo 'echo "Environment:" && env | grep -E "(SONAR|MCP|LOG)" && echo "Starting sonarqube-mcp-server..." && sonarqube-mcp-server' > /app/start.sh && chmod +x /app/start.sh
+
+# Set the command to run the MCP server with debugging
+CMD ["/app/start.sh"]
