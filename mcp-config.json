@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "sonarqube": {
+      "command": "/opt/homebrew/opt/openjdk@21/bin/java",
+      "args": [
+        "-jar",
+        "/Users/taylorcurran/Documents/dev/run-sonarqube/sonarqube-mcp-server/build/libs/sonarqube-mcp-server-0.0.3-SNAPSHOT.jar"
+      ],
+      "env": {
+        "JAVA_HOME": "/opt/homebrew/opt/openjdk@21",
+        "STORAGE_PATH": "/tmp/mcp-sonarqube-storage",
+        "SONARQUBE_TOKEN": "squ_REDACTED",
+        "SONARQUBE_URL": "http://localhost:9000"
+      }
+    }
+  }
+}
