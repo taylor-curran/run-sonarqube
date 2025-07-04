@@ -71,7 +71,7 @@ docker info
 ### Step 2: Start SonarQube & MCP Server
 ```bash
 # Navigate to project directory
-cd /path/to/run-sonarqube
+cd /Users/taylorcurran/Documents/dev/run-sonarqube
 
 # Start all services (SonarQube + PostgreSQL + MCP containers)
 docker-compose up -d
@@ -79,6 +79,7 @@ docker-compose up -d
 # Verify services are running
 docker-compose ps
 ```
+You may need to wait a few seconds for the SonarQube container to start up.
 
 ### Step 3: Verify Everything is Working
 ```bash
