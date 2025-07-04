@@ -203,7 +203,7 @@ ls -la /tmp/mcp-sonarqube-storage/
 ### Connection Issues
 ```bash
 # Test SonarQube API
-curl -u "squ_fafc2f669e0523185b23b97a3663f4c7fed67dea:" http://localhost:9000/api/system/info
+curl -u "squ_REDACTED:" http://localhost:9000/api/system/info
 ```
 
 ## 🏆 Success Factors
