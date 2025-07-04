@@ -52,8 +52,59 @@ The MCP server is already built and configured. Import the MCP configuration:
 
 1. Open Windsurf
 2. Go to MCP settings
-3. Import or refresh using `@[mcp-config.json]`
+3. Click the refresh button
 4. The SonarQube MCP server should connect successfully
+
+## 🚀 Quick Demo
+
+To run a complete demo from a fresh computer restart:
+
+### Step 1: Start Docker Desktop
+```bash
+# On macOS - opens Docker Desktop application
+open -a Docker
+
+# Wait for Docker to fully start (check with)
+docker info
+```
+
+### Step 2: Start SonarQube & MCP Server
+```bash
+# Navigate to project directory
+cd /path/to/run-sonarqube
+
+# Start all services (SonarQube + PostgreSQL + MCP containers)
+docker-compose up -d
+
+# Verify services are running
+docker-compose ps
+```
+
+### Step 3: Verify Everything is Working
+```bash
+# Test SonarQube is responding
+curl -s http://localhost:9000/api/system/ping
+# Should return: "pong"
+
+# In Windsurf, test MCP connection:
+# "Can you check SonarQube system health?"
+# Should return: "SonarQube Server Health Status: GREEN"
+```
+
+### Step 4: Ready for Analysis!
+```
+# Now you can use commands like:
+- "Analyze this code snippet for issues"
+- "Show me my SonarQube projects"
+- "Get system health status"
+- "Search for issues in my projects"
+```
+
+**Expected Timeline:**
+- Docker startup: ~30 seconds
+- SonarQube initialization: ~1-2 minutes
+- MCP server auto-starts with Windsurf
+- Total setup time: ~3 minutes
 
 ## 🎯 Usage Examples
 
@@ -114,7 +165,7 @@ The MCP server provides these tools:
    - Token: `squ_REDACTED`
 
 2. **MCP Server**
-   - Source: Official SonarSource repository
+   - Source: [Official SonarSource MCP Server](https://github.com/SonarSource/sonarqube-mcp-server)
    - Version: 0.0.3-SNAPSHOT
    - Built locally with Java 21
    - Storage: `/tmp/mcp-sonarqube-storage`
